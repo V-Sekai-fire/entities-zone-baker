@@ -1,13 +1,8 @@
 name: Build and push baker image
 
-# Builds the baker image (FROM ghcr.io/v-sekai-multiplayer-fabric/godot-editor-double)
-# and pushes to ghcr.io/v-sekai-multiplayer-fabric/zone-baker. Consumed by the
+# Builds the baker image (FROM ghcr.io/v-sekai-fire/godot-editor-double)
+# and pushes to ghcr.io/v-sekai-fire/zone-baker. Consumed by the
 # infra repo's tofu apply, not by flyctl any more.
-#
-# The engine base image lives in v-sekai-multiplayer-fabric/godot-images
-# (single source of truth, matrix-built editor + runtime). When that repo
-# publishes a new editor image it can fire `repository_dispatch` event
-# `engine-updated` here to trigger a fresh baker build.
 
 on:
   workflow_dispatch:
@@ -50,7 +45,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v6
         with:
-          images: ghcr.io/v-sekai-multiplayer-fabric/zone-baker
+          images: ghcr.io/v-sekai-fire/zone-baker
           tags: |
             type=sha,format=short
             type=raw,value=latest,enable={{is_default_branch}}
